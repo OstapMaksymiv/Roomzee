@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+body{
+    font-family: "Inter", sans-serif;
+    // overflow: hidden;
+    // background-color: rgb(10, 10, 10);
+
+}
+h1, h4, h2{
+    color: #d4d4d4;
+}
+h1{
+    font-weight: 800;
+    font-size: 60px;
+}
+h2{
+    font-family: "Inter", "Inter Placeholder", sans-serif;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    line-height: 140%;
+
+}
+h4{
+    font-weight: 700;
+    font-size: 14px;
+}
+p{
+    color: #999999;
+}
+img{
+    user-select: none;
+}

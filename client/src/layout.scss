@@ -1,0 +1,63 @@
+@import './responsive.scss';
+.layout{
+    // display: flex;
+    // flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+
+    @include large {
+        
+    }
+    @include medium {
+        
+    }
+    @include small {
+        
+    }
+}
+.paralaxClass{
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    perspective: 15px;
+    
+}
+.paralaxClass::before{
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    background-image: url('/Sblack.png');
+    background-size: cover; 
+    background-position: center; 
+    transform: translateZ(-5px) scale(1.2);
+    width: 400px;
+    height: 300px;
+}
+.paralaxClass::after{
+    content: '';
+    position: absolute;
+    top: 4%;
+    right: 3%;
+    background-image: url('/Oblack.png');
+    transform: translateZ(-5px) scale(1.2);
+    background-size: cover; 
+    background-position: center; 
+    width: 400px;
+    height: 300px;
+}
+.content{
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+}
+hr{
+    width: 100%;
+    height: 1px;
+    background-color:rgb(181, 181, 181);
+    border: none;
+}
