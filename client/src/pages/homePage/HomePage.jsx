@@ -7,12 +7,6 @@ import "swiper/css/autoplay";
 
 // Модулі тепер імпортуються з 'swiper'
 import { Autoplay, A11y, Scrollbar, Pagination, Navigation } from 'swiper/modules';
-
-
-
-
-
-
 import { v4 } from 'uuid';
 import './homePage.scss'
 import SearchBar from '../../components/SearchBar/SearchBar'
