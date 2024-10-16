@@ -1,17 +1,60 @@
+@import '../../responsive.scss';
 .homePage{
     display: flex;
     flex-direction: column;
     align-items: center;
     perspective: 10px;
     padding: 128px 0 ;
+    @media(max-width:810px){
+        padding: 128px 0 64px;
+    }
 }
 .main_info{
     display: flex;
     flex-direction: column;
     gap: 24px;
+    position: relative;
+    z-index: 1;
     align-items: center;
     text-align: center;
     max-width: 730px;
+    // .boxes{
+    //     display: flex;
+    //     gap: 45px;
+    //     align-items: center;
+    //     .box{
+    //         h3{
+    //             font-size: 36px;
+    //             font-weight: 900;
+    //         }
+    //         h4{
+    //             font-size: 20px;
+    //             font-weight: 500;
+    //             color: rgb(153, 153, 153);
+
+    //         }
+    //     }
+    // }
+    @media(max-width:810px){
+        h1{
+            font-size: 36px;
+        }
+    }
+    @media (max-width:405px) {
+        h1{
+            font-size: 30px;
+        }
+        p{
+            width: 300px;
+        }
+      }
+}
+.roomzee{
+    font-size: 20px;
+
+    font-weight: 800;
+    font-family: "Shadows Into Light", cursive;
+    
 }
 .splide{
     width: 650px;
@@ -27,8 +70,12 @@
     width: 500px;
     height: 50px ;
     position: relative;
+    @include small{
+        width: 360px;
+    }
     .swiper-slide {
         color: rgb(153, 153, 153);
+        text-align: center;
         font-size: 14px;
         letter-spacing: -0.02em;
         font-weight: 400;
@@ -161,8 +208,17 @@
             color: rgb(181, 181, 181);
             padding: 7px 14px;
         }
+        @media (max-width:530px) {
+            input{
+                width:200px;
+            }
+            flex-direction: column;
+            height: auto !important;
+            img{
+                order: 3;
+                display: none;
+            }
+        }
     }
 }
-.searchForm input{
 
-}

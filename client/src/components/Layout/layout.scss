@@ -1,4 +1,4 @@
-@import './responsive.scss';
+@import '../../responsive.scss';
 .layout{
     // display: flex;
     // flex-direction: column;
@@ -49,8 +49,12 @@
     width: 400px;
     height: 300px;
 }
+.hide-parallax::before,
+.hide-parallax::after {
+    display: none;
+}
 .content{
-    margin-top: 52px;
+    margin-top: 22px;
     display: flex;
     flex-direction: column;
     // align-items: center;
@@ -60,4 +64,47 @@ hr{
     height: 1px;
     background-color:rgb(181, 181, 181);
     border: none;
+}
+@media (max-width:1800px){
+    .paralaxClass::before{
+        width: 300px;
+        height: 250px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        left: -3%;
+    }
+    .paralaxClass::after{
+        right: -2%;
+        width:300px;
+        height: 250px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+@include large{
+    .paralaxClass::before{
+
+        // top: 10%;
+        left: 25%;
+        transform: translateX(-25%) translateY(-65%) translateZ(-5px) scale(1.2);
+
+    }
+    .paralaxClass::after{
+        right: 18%;
+        transform: translateX(-18%) translateY(-20%) translateZ(-5px) scale(1.2);
+
+        z-index: -1;
+        // top: 10%;
+ 
+    }
+}
+@include medium{
+    .paralaxClass::before{
+        display: none;
+
+    }
+    .paralaxClass::after{
+        display: none;
+
+    }
 }

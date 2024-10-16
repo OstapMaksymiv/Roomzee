@@ -26,14 +26,14 @@ const Navbar = () => {
   return (
     <nav style={isOpen ? {backgroundColor: 'transparent'} : {backgroundColor: 'rgba(13, 13, 13, 0.85)'}}>
         <div className='leftSide'>
-            <a className="leftLink" href='/'>
-                <img src="/icon.png" alt="" />
+            <Link className="leftLink" to='/'>
+                <img src="/logo.jpg" alt="" />
                 <span>Roomzee</span>
-            </a>
+            </Link>
         </div>
         <div className='rightSide'>
-            <a className="link" href="/">Home</a>
-            <a className="link" href="/">Rooms</a>
+            <Link className="link" to="/">Home</Link>
+            <Link className="link" to="/rooms">Rooms</Link>
             <a className="link" href="/">Contacts</a>
             <a href="/login" className='login'>
                 <span>Sign in</span>

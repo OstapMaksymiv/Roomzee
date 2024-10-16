@@ -1,0 +1,13 @@
+.roomsPage{
+    margin: 40px 0;
+    display: flex;
+    .filter-map_container{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .map-block{
+        width: 544px;
+        height: 345px;
+    }
+}

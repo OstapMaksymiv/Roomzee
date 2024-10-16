@@ -83,3 +83,9 @@
       filter: blur(4px);
     }
 }
+@media (max-width:530px) {
+  .searchForm{
+    width: auto;
+    max-width: 400px;
+  }
+}

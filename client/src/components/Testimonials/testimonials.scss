@@ -1,15 +1,158 @@
+@import '../../responsive.scss';
 .Testimonials_block{
     padding: 32px 0;
     display: flex;
     flex-direction: column;
     
 }
+
 .mainReview_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
     h3{
     letter-spacing: -0.02em;
     line-height: 1.4em;
     text-align: center;
     color:  rgb(153, 153, 153);
         
+    }
+    .swiperADW{
+        width: 500px;
+        height: 50px ;
+        position: relative;
+        .swiper-slide {
+
+            font-family: "Caveat", cursive !important;
+            font-size: 24px;
+            img{
+                width: 40px;
+                height: 40px;
+            }
+        }
+        @include small{
+            width: 360px;
+        }
+            
+        
+        .swiper-wrapper{
+            transition-timing-function: linear !important;
+        }
+    }
+    .swiperADW::after{
+        content: '';
+        top: 0;
+        left: -2%;
+        position: absolute;
+        width: 40px;
+        height: 50px;
+        background-color: rgb(255, 255, 255);
+        filter: blur(5px);
+        opacity: 1;
+        z-index: 99;
+    }
+    .swiperADW::before{
+        content: '';
+        top: 0;
+        right: -2%;
+        position: absolute;
+        width: 40px;
+        height: 50px;
+        background-color: rgb(255, 255, 255);
+        filter: blur(5px);
+        opacity: 1;
+        z-index: 99;
+    }
+}
+.reviews{
+    display: grid;
+    flex: 0 0 auto;
+    gap: 24px;
+    grid-auto-rows: minmax(0px, 1fr);
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    height: min-content;
+    justify-content: center;
+    padding: 0px;
+    position: relative;
+    width: 100%;
+    @media(max-width:1100px){
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+    @media (max-width:750px) {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+        .review:nth-last-child(-n+3){
+            display: none;
+        }
+    }
+    .review{
+        --border-bottom-width: 1px;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --border-left-width: 1px;
+        --border-right-width: 1px;
+        --border-style: solid;
+        --border-top-width: 1px;
+        background: linear-gradient(180deg, rgb(19, 20, 21) 0%, rgb(5, 5, 5) 100%);
+        width: 100%;
+        border-radius: 12px;
+        opacity: 1;
+        place-content: flex-start space-between;
+        align-items: flex-start;
+        display: flex;
+        flex-flow: column;
+        height: 200px;
+        overflow: visible;
+        padding: 24px;
+        position: relative;
+        .stars{
+            img{
+                width: 14px;
+                height: 14px;
+            }
+        }
+        .review_person{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            --border-bottom-width: 1px;
+            --border-color:  rgba(255, 255, 255, 0.1);
+            --border-left-width: 1px;
+            --border-right-width: 1px;
+            --border-style: solid;
+            --border-top-width: 1px;
+            box-shadow: rgba(240, 240, 240, 0) 0px 0px 32px 0px;
+            opacity: 1;
+            img{
+                border-radius: 12px;
+                width: 24px;
+                height: 24px;
+                object-fit: cover;
+                object-position: top;
+            }
+        }
+        .review_text{
+            // display: flex;
+            // align-items: center;
+            // gap: 4px;
+            font-size: 14px;
+        }
+        .template-date{
+            margin-top: 24px;
+            font-size: 12px ;
+            letter-spacing: -0.02em;
+            line-height: 140%;
+            color:  #f0f0f0;
+            span{
+                color:  rgb(153, 153, 153);
+            }
+            @media (max-width:405px) {
+                margin-top: 12px;
+            }
+        }
+    }
+}
+@media (max-width:750px) {
+    .tb-title{
+        display: none !important;
     }
 }

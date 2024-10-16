@@ -17,7 +17,7 @@ nav{
         margin: 0 auto;
         gap: 16px;
     }
-    @include small {
+    @media(max-width:650px){
         width: auto;
     }
 }
@@ -35,14 +35,17 @@ nav{
     align-items: center;
     gap: 10px;
     img{
-        width: 30px;
+        width: 40px;
+        border-radius:5px;
     }
     span{ 
-        font-size: 20px;
+        font-size: 25px;
+        font-weight: 800;
+        font-family: "Shadows Into Light", cursive;
         @include medium{
             display: none;
         }
-        @include small{
+        @media(max-width:650px){
             display: initial;
         }
     }
@@ -59,9 +62,7 @@ nav{
         font-size: 14px;
         transition: 0.5s all ease-in-out;
         border-radius: 7px;
-        &:hover{
-            background-color: #f0f0f065;
-        }
+
     }
     .login{
         display: flex;
@@ -88,22 +89,15 @@ nav{
             width: 24px;
             
         }
-        &:hover{
-            --border-color:  rgba(255, 255, 255, 0.2);
-            box-shadow: rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset;
-        }
     }
     .signUp{
         transition: 0.45s all ease-in-out;
-        &:hover{
-            filter: drop-shadow(0px 0px 12px white);
-        }
     }
     .link , .login , .signUp{
         // @include medium{
         //     flex:none;
         // }
-        @include small{
+        @media(max-width:650px){
             flex:none;
             display: none;
         }
@@ -111,7 +105,7 @@ nav{
 }
 
 .menuIcon{
-    @include small{
+    @media(max-width:650px){
         display:inline;
     }
     display: none;
@@ -141,11 +135,7 @@ nav{
         transition: all 0.3s ease-in-out;
         // border-radius: 7px;
         // padding: 7px 14px;
-        &:hover{
-            color:rgb(240, 240, 240);
-            // background-color: #f0f0f065;
-            filter: drop-shadow(0 0 15px white);
-        }
+
     }
     ul {
         list-style: none;
@@ -226,3 +216,20 @@ nav{
         }
     }
 }
+@media (any-hover: hover) {
+    .link:hover{
+        background-color: #f0f0f065;
+    }
+    .login:hover{
+        --border-color:  rgba(255, 255, 255, 0.2);
+        box-shadow: rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset;
+    }
+    .signUp:hover{
+        filter: drop-shadow(0px 0px 12px white);
+    }
+    .menu_link:hover{
+        color:rgb(240, 240, 240);
+        // background-color: #f0f0f065;
+        filter: drop-shadow(0 0 15px white);
+    }
+  }
