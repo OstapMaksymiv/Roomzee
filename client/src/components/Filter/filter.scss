@@ -2,11 +2,15 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    background-color: rgb(13, 13, 13);
+    width: max-content;
+    background-color: rgb(13,13,13);
     padding: 15px 25px;
     box-shadow: 1.5rem 1rem .7rem #0000002e;
     border-radius: 10px;
-    
+    // border: 2px solid rgb(13,13,13);
+    @media (max-width:430px) {
+        padding: 15px;
+    }
     fieldset{
 
         border: none;
@@ -158,6 +162,9 @@
     }
     .amount-block, .rent-block, .size-block{
         width: 155px;
+        @media (max-width:430px) {
+            width: 123px;
+        }
     }
     .price-block{
         width: 123px;
@@ -190,4 +197,5 @@
             filter: none;
         }
     }
+
 }

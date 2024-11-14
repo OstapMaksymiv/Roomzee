@@ -1,0 +1,111 @@
+@import '../../responsive.scss';
+.faq{
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h1{
+        text-align: center;
+    }
+    .description{
+        margin: 24px 0 64px 0;
+        max-width: 440px;
+        text-align: center;
+        letter-spacing: -0.02em;
+        line-height: 1.4em;
+        color:  rgb(153, 153, 153);
+    }
+    @include small{
+        h1{
+            font-size: 40px;
+        }
+    }
+    @media (max-width:450px) {
+        h1{
+            font-size: 32px;
+        }
+       .description{
+        
+        font-size: 14px;
+       }     
+    }
+}
+.faq-block{
+    max-width: 888px;
+    display: flex;
+    box-shadow: 1rem 1rem .7rem #0000002e;
+    flex-direction: column;
+    --border-bottom-width: 1px;
+    --border-color:  rgba(255, 255, 255, 0.1);
+    --border-left-width: 1px;
+    --border-right-width: 1px;
+    --border-style: solid;
+    --border-top-width: 1px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(rgba(19, 20, 21, 0.7) 0%, rgba(5, 5, 5, 0.7) 100%);
+    border-radius: 12px;
+    background-color:  #000000;
+    padding: 18px 20px;
+    transition: 0.3s ease-in-out;
+    // max-height: 63px; 
+    // overflow: hidden; /* Hide overflow to avoid scrollbar */
+    user-select: none;
+    cursor: pointer;
+    
+    &:hover{
+        box-shadow: none;
+    }
+    @media (max-width:450px) {
+        h2{
+            font-size:18px;}
+     }
+}
+
+.faq-panel{
+    font-size: 15px;
+    max-height: 0;
+    transition: .3s all ease-in-out;
+    overflow: hidden;
+    &.active{
+        margin-top: 12px;
+    }
+}
+h2 {
+    flex-grow: 1;
+}
+
+.plusminus {
+    flex-shrink: 0;
+	position: relative;
+	width: 20px ;
+	height: 20px ;
+	&.plusminus-active {
+		&:before {
+			transform: translatey(-50%) rotate(-90deg);
+			opacity: 0;
+		}
+		&:after {
+			transform: translatey(-50%) rotate(0);
+		}
+	}
+	
+	&:before , &:after {
+		content: "";
+		display: block;
+		background-color: #ffffff;
+		position: absolute;		
+		top: 50%; left: 0;
+		transition: .35s;
+		width: 100%;
+		height: 3px;
+	}
+	
+	&:before {		
+		transform: translatey(-50%);
+	}
+	
+	&:after {
+		transform: translatey(-50%) rotate(90deg);
+	}
+	
+}

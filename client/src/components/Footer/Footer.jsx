@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import emailjs from 'emailjs-com';
 import './footer.scss'
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState(404);
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      const templateParams = {
+        user_email: email, 
+      };
+  
+      emailjs.send('service_0ko1d2i', 'template_h38oh1s', templateParams, 'Cc0mFmrVv2uolpJnU')
+        .then((response) => {
+        setStatus(response.status)
+          setEmail('Email sent successfully!')
+          setTimeout(() => {
+            // setEmail('')
+            setStatus(404)
+          }, 2500)
+          setTimeout(() => {
+            setEmail('')
+            // setStatus(404)
+          }, 3000)
+        })
+    };
   return (
+  <>
+        <hr style={{backgroundColor:'rgba(255, 255, 255, 0.1)'}}/>
     <footer className='footer'>
         <div className='container'>
             <div className='footer_F'>
@@ -13,29 +40,29 @@ const Footer = () => {
                     <div className='nb_f'>
                         <h3>Subscribe to be in the know.</h3>
                         <p>Sign up for our newsletter below to stay updated with the latest news and updates. Don't worry, we hate spam too.</p>
-                        <div style={{display:'flex', alignItems:'center', gap:'12px', marginTop:'16px', width:'350px'}}>
-                            <input type="text"  placeholder='Your email address'/>
-                            <button>Subscribe</button>
-                        </div>
+                        <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', gap:'12px', marginTop:'16px', width:'350px'}}>
+                            <input style={status === 200 ? {backgroundColor:'white', color:'black'} : {backgroundColor:'rgb(23, 23, 23)',color:'white'}} required type="email" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder='Your email address'/>
+                            <button type="submit">Subscribe</button>
+                        </form>
                     </div>
                     <div className='nb_s'>
                         <ul className='footer_links'>
                             <li className='f_f-link'>Pages</li>
-                            <li className='f_link'><a href="">Home</a></li>
-                            <li className='f_link'><a href="">Rooms</a></li>
-                            <li className='f_link'><a href="">Profile</a></li>
+                            <li className='f_link'><Link to="/">Home</Link></li>
+                            <li className='f_link'><Link to="/rooms">Rooms</Link></li>
+                            <li className='f_link'><Link to="/profile">Profile</Link></li>
                             
                         </ul>
                         <ul className='footer_links'>
                             <li className='f_f-link'>All-Access Pass</li>
-                            <li className='f_link'><a href="">Sign Up</a></li>
-                            <li className='f_link'><a href="">Sign in</a></li>
-                            <li className='f_link'><a href="">Reset Password</a></li>
+                            <li className='f_link'><Link to="/register">Sign Up</Link></li>
+                            <li className='f_link'><Link to="/login">Sign in</Link></li>
+                            <li className='f_link'><Link to="/reset-password">Reset Password</Link></li>
                         </ul>
                         <ul className='footer_links'>
                             <li className='f_f-link'>Information</li>
-                            <li className='f_link'><a href="">FAQ</a></li>
-                            <li className='f_link'><a href="">Contact Us</a></li>
+                            <li className='f_link'><Link to="/faq">FAQ</Link></li>
+                            <li className='f_link'><Link to="/contact-us">Contact Us</Link></li>
 
                         </ul>
                     </div>
@@ -43,14 +70,19 @@ const Footer = () => {
             <hr style={{backgroundColor:'rgba(255, 255, 255, 0.1)'}}/>
             </div>
             <div className='footer_S'>
-                <p>Created by <a href="">Ostap Maksymiv</a></p>
+                <p>Created by <a href="https://ostapmaxportfolio.vercel.app" target='_blank'>Ostap Maksymiv</a></p>
                     <div>
-                        <img src="/github-logo.png" alt="" />
-                        <img src="/linkedin.png" alt="" />
+                        <a href="https://github.com" target="_blank">
+                            <img src="/github-logo.png" alt="" />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank">
+                            <img src="/linkedin.png" alt="" />
+                        </a>
                     </div>
             </div>
         </div>
     </footer>
+  </>
   )
 }
 

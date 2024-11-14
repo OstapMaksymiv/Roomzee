@@ -1,0 +1,188 @@
+@import '../../responsive.scss';
+.card{
+    // box-shadow: 0.5rem 0.7rem .7rem #0000002e;
+    border-radius: 10px ;
+    overflow: hidden;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+    .card-title{
+        position: absolute;
+        color: #ffffff;
+        font-weight: 800;
+        bottom: 5%;
+        left: 5%;
+        z-index: 2;
+        font-size: 19px;
+        box-shadow: none;
+    }
+    &:hover{
+        box-shadow: 0.7rem 0.7rem .7rem #0000002e;
+    }
+    @media (max-width:847px) {
+        max-width: 300px;
+    }
+}
+.card-mainInfo{
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+    box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0.76), inset 0 0 0 1px rgb(0, 0, 0, 0.76);
+    border-radius: 0 0 10px 10px ;
+    appearance: none;
+    outline: none;
+    border: none;
+    @media (max-width:430px) {
+        width: 280px;
+
+    }
+    .price-block{
+        display: flex;
+        justify-content: space-between;
+        span{
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+        img{
+          padding: 5px;
+          background-color: rgb(230, 230, 230);
+          border-radius: 50%;
+          transition: 0.4s ease-in-out;
+          z-index: 2;
+          &:hover{
+            filter: invert(100%);
+            // background-color: rgb(236, 129, 188);
+          }
+        }
+    }
+    .location-block{
+        max-width: 280px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 1;
+        color: rgb(141, 141, 141);
+        font-size: 12px;
+        img{
+            width: 15px;
+            height: 15px;
+        }
+        @media (max-width:847px) {
+            font-size: 11px;
+        }
+    }
+    .rest-info{
+        font-size: 14px;
+        display: flex;
+        gap: 5px;
+        @media (max-width:847px) {
+            font-size: 12px;
+        }
+    }
+}
+.card-mainInfo::before{
+    content: '';
+    position: absolute;
+    top: -190% ;
+    right: -10%;
+    transform: rotate(180deg);
+    background-image: url('/silver2.png');
+    
+    width: 150px;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    // object-fit: cover;
+    background-repeat: no-repeat;
+    z-index:0;
+
+}
+// .card-mainInfo::after{
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     width: 100%;
+//     background: rgb(255,255,255);
+//     height: 10px;
+//     background: linear-gradient(0deg, rgba(255, 255, 255, 0.295) 0%, rgba(0,0,0,1) 100%);
+//     z-index: -2;
+// }
+.card_swp{
+    width: 312px;
+    // position: relative;
+    height: 180px;
+    @include large{
+        width:320px;
+    }
+    @media (max-width:1130px) {
+        width: 350px;
+        height: 200px;
+    }
+    @media (max-width:847px) {
+        width: 300px;
+        height: 180px;
+    }
+    @media (max-width:710px) {
+        width: 350px;
+        height: 200px;
+    }
+    @media (max-width:430px) {
+        width: 280px;
+        height: 180px;
+    }
+
+    .swiper-slide {
+        img{
+            width: 350px;
+            height: 200px;
+            object-fit:cover;
+            object-position: center;
+        }
+        position: relative;
+        display: flex;
+        align-items: center;
+        transition: opacity 0.3s ease, filter 0.3s ease;
+        opacity: 1;
+        filter: blur(0px);
+    }
+    .swiper-button-next, .swiper-button-prev {
+        z-index: 999999;
+        background-color: white;
+        padding: 10px;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0.76), inset 0 0 0 1px rgb(0, 0, 0, 0.76);
+
+    }
+     .swiper-button-next::after{
+        left:15% ;
+        transform: translateX(15%) ;
+        font-size: 15px;
+        color: rgba(13, 13, 13);
+   
+    }
+    .swiper-button-prev::after{
+        right:-15%;
+        transform: translateX(-15%);
+        font-size: 15px;
+        color: rgba(13, 13, 13);
+ 
+    }
+
+}
+.card_swp::before {
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top, black, rgba(13, 13, 13, 0.8) 50%, rgba(13, 13, 13, 0.4) 80%, rgba(13, 13, 13, 0));
+    z-index: 99;
+}

@@ -1,107 +1,153 @@
-import React, {useState} from 'react'
-import './roomsPage.scss'
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import './roomsPage.scss';
 import Filter from '../../components/Filter/Filter';
-import Map from '../../components/Map/Map';
-const RoomsPage = () => {
-const [listData, setListData] = useState([
-    {
-      id: 1,
-      title: "A Great Apartment Next to the Beach!",
-      img: "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 2,
-      bathroom: 1,
-      price: 1000,
-      address: "456 Park Avenue, London",
-      latitude: 51.5074,
-      longitude: -0.1278,
-    },
-    {
-      id: 2,
-      title: "An Awesome Apartment Near the Park! Almost too good to be true!",
-      img: "https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 3,
-      bathroom: 2,
-      price: 1500,
-      address: "789 Oxford Street, London",
-      latitude: 52.4862,
-      longitude: -1.8904,
-    },
-    {
-      id: 3,
-      title: "A New Apartment in the City!",
-      img: "https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 1,
-      bathroom: 1,
-      price: 800,
-      address: "101 Baker Street, London",
-      latitude: 53.4808,
-      longitude: -2.2426,
-    },
-    {
-      id: 4,
-      title: "Great Location! Great Price! Great Apartment!",
-      img: "https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 2,
-      bathroom: 1,
-      price: 1000,
-      address: "234 Kingsway, London,",
-      latitude: 53.8008,
-      longitude: -1.5491,
-    },
-    {
-      id: 5,
-      title: "Apartment 5",
-      img: "https://images.pexels.com/photos/276625/pexels-photo-276625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 3,
-      bathroom: 2,
-      price: 1500,
-      address: "567 Victoria Road, London",
-      latitude: 53.4084,
-      longitude: -2.9916,
-    },
-    {
-      id: 6,
-      title: "Apartment 6",
-      img: "https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 1,
-      bathroom: 1,
-      price: 800,
-      address: "890 Regent Street, London",
-      latitude: 54.9783,
-      longitude: -1.6174,
-    },
-    {
-      id: 7,
-      title: "Apartment 7",
-      img: "https://images.pexels.com/photos/2029667/pexels-photo-2029667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 2,
-      bathroom: 1,
-      price: 1000,
-      address: "112 Piccadilly, London",
-      latitude: 53.3811,
-      longitude: -1.4701,
-    },
-    {
-      id: 8,
-      title: "Apartment 8",
-      img: "https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      bedroom: 3,
-      bathroom: 2,
-      price: 1500,
-      address: "8765 Main High Street, London",
-      latitude: 51.4545,
-      longitude: -2.5879,
-    },
-  ]);
-  return (
-    <div className='roomsPage'>
-      <aside className='filter-map_container'>
-        <Filter/>
-        <div className='map-block'><Map/></div>
-      </aside>
-      <div className='list_container'></div>
-    </div>
-  )
-}
+import Card from '../../components/Card/Card';
+import { Await, useLoaderData } from 'react-router-dom';
 
-export default RoomsPage
+const RoomsPage = () => {
+  const [modal, setModal] = useState('pre_modal');
+  const [filterImg, setFilterImg] = useState('');
+  const [currentItems, setCurrentItems] = useState([])
+  const [isFetched, setIsFetched] = useState(false)
+  const premodel = useRef('');
+  const list = useRef('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 9;
+  const posts = useLoaderData();
+  console.log(posts.postResponse);
+  const paginationItems = currentItems.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  );
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(currentItems.length / rowsPerPage);
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const fetchData =  (items) => {
+    setCurrentItems(items.data);
+  };
+  useEffect(() => {
+    const updateHeight = () => {
+      if (window.innerWidth > 1440) {
+        setModal('pre_modal');
+      }
+      if (premodel.current && list.current) {
+        premodel.current.style.height = `${list.current.offsetHeight}px`;
+      }
+    };
+    updateHeight();
+
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, []);
+
+  const handleGiveClass = () => {
+    if (modal === 'pre_modal') {
+      setFilterImg('invert');
+      setModal('pre_modal pre_modal-active');
+    } else {
+      setModal('pre_modal');
+      setFilterImg('');
+    }
+  };
+
+  const handleCleanClass = () => {
+    if (modal === 'pre_modal pre_modal-active') {
+      setModal('pre_modal');
+      setFilterImg('');
+    }
+  };
+
+  return (
+    <>
+      <div className={modal} ref={premodel}>
+        <div className="modal-filter">
+          <div>
+            <Filter />
+          </div>
+        </div>
+      </div>
+      <div className="roomsPage" onClick={handleCleanClass}>
+        <div className="nav-rooms">
+          <h1>More than {currentItems.length} Results</h1>
+          <div>
+            <img className={filterImg} src="/setting.png" onClick={handleGiveClass} alt="Settings Icon" />
+          </div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div className="rooms-block">
+            <div className="filter_slicky-block">
+              <aside className="filter-map_container">
+                <Filter />
+                {/* <div className="map-block"><Map/></div> */}
+              </aside>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+              {/* {paginationItems.map((item, index) => (
+                <Card key={item.id} postId={index} post={item} />
+              ))} */}
+              <Suspense fallback={
+                <div className='loader-block'>
+                  <span className="loader"></span>
+                </div>
+              }>
+                <Await resolve={posts.postResponse} errorElement={<p>Error with getting posts!</p>}>
+                  {(postResponse) => {
+ 
+                    fetchData(postResponse);
+                    setIsFetched(true)
+                    return (
+                      (isFetched && paginationItems.length === 0 ) ? (<div className='no-results'><h1>There are no results</h1></div>):
+                      <>
+                        <div ref={list} className="list_container">
+                          {paginationItems.map((post, index) => (
+                            <Card key={post.id} postId={index} post={post} />
+                          ))}
+                        </div>
+                        <div className="pagination">
+                          <button
+                            onClick={currentPage > 1 ? () => handlePageChange(currentPage - 1) : undefined}
+                            className="letter-btn"
+                          >
+                            <img src="/back.png" alt="Back" />
+                          </button>
+                          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                            <button
+                              key={page}
+                              className={page === currentPage ? 'pagination-active pagination-page' : 'pagination-page'}
+                              onClick={() => handlePageChange(page)}
+                            >
+                              {page}
+                            </button>
+                          ))}
+                          <button
+                            onClick={currentPage !== totalPages ? () => handlePageChange(currentPage + 1) : undefined}
+                            className="letter-btn"
+                          >
+                            <img src="/next.png" alt="Next" />
+                          </button>
+                        </div>
+                      </>
+                    );
+                  }}
+                </Await>
+              </Suspense>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default RoomsPage;

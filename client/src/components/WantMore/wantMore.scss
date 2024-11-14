@@ -61,7 +61,7 @@
 
             }
 
-            button{
+            a{
                 display: flex;
                 align-items: center;
                 gap: 5px;
@@ -77,14 +77,22 @@
                 letter-spacing: -0.03em;
                 color: rgb(10, 10, 10);
                 transition: 0.8s ease;
+                &:hover{
+                
+                    span{
+
+                        transform: translateX(10px);
+                    }
+                }
                 span{
+                    transition: 0.5s ease-in-out;
                     font-size: 20px;
                 }
 
 
             }
             @media (max-width:405px) {
-                    button{
+                    a{
                         padding: 12px;
                     }
             }

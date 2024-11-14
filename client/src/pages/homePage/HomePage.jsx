@@ -13,7 +13,11 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 import Testimonials from '../../components/Testimonials/Testimonials';
 import WantMore from '../../components/WantMore/WantMore';
 import Footer from '../../components/Footer/Footer';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContaxt';
 const HomePage = ({handleModuleWindow}) => {
+  const {currentUser} = useContext(AuthContext);
+
   const [advert, setAdvert] = useState([
     'Explore, Choose, Relax',
     'Rooms Tailored Perfectly',

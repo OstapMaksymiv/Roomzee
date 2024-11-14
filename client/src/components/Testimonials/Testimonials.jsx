@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect, createRef} from 'react'
-
+import { v4 } from 'uuid';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -93,7 +93,7 @@ const Testimonials = () => {
               </Swiper>
               <div className='reviews'>
                     {reviews.map(review => (
-                      <div className='review'>
+                      <div key={v4()} className='review'>
                         <div style={{display:'flex', flexDirection:'column', gap:'12px'}}>
                           <div className='review_person'>
                               <img src={review.avatar} alt="" />
