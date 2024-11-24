@@ -2,7 +2,7 @@ import { useState,useRef } from "react";
 import "./newPostPage.scss";
 import ReactQuill from "react-quill";
 import apiRequest from "../../library/apiRequest";
-import UploadWidget from "../../components/uploadWidget/uploadWidget.jsx"
+import UploadWidget from "../../components/UploadWidget/UploadWidget.jsx"
 import "react-quill/dist/quill.snow.css";
 import { useLoaderData, useNavigate } from "react-router-dom";
 function NewPostPage() {
