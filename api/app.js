@@ -17,6 +17,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/test", testRouter);   
 app.use("/api/messages", messageRouter);   
 app.use("/api/chats", chatRouter);   
-app.listen(8800,() => {
-    console.log('Server is started')
-})
+// app.listen(8800,() => {
+//     console.log('Server is started')
+// })
+export default app;
