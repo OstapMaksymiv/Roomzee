@@ -11,7 +11,7 @@ const {currentUser} = useContext(AuthContext)
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    setSocket(io("https://roomzee-97be.vercel.app"));
+    setSocket(io("https://roomzee-socket.onrender.com"));
   }, []);
 
   useEffect(() => {
