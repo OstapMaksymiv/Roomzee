@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, {  useState } from 'react';
+import { Link,useLocation } from "react-router-dom";
 import emailjs from 'emailjs-com';
 import './footer.scss'
+
 const Footer = () => {
+    const location  = useLocation();
+   
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState(404);
     const handleSubmit = (e) => {
@@ -17,18 +20,19 @@ const Footer = () => {
         setStatus(response.status)
           setEmail('Email sent successfully!')
           setTimeout(() => {
-            // setEmail('')
             setStatus(404)
           }, 2500)
           setTimeout(() => {
             setEmail('')
-            // setStatus(404)
           }, 3000)
         })
     };
   return (
-  <>
-        <hr style={{backgroundColor:'rgba(255, 255, 255, 0.1)'}}/>
+  <>   
+{
+  (location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/reset-password') && 
+  <hr style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
+}
     <footer className='footer'>
         <div className='container'>
             <div className='footer_F'>

@@ -77,13 +77,6 @@
                 letter-spacing: -0.03em;
                 color: rgb(10, 10, 10);
                 transition: 0.8s ease;
-                &:hover{
-                
-                    span{
-
-                        transform: translateX(10px);
-                    }
-                }
                 span{
                     transition: 0.5s ease-in-out;
                     font-size: 20px;
@@ -100,7 +93,7 @@
 
     }
 }
-.wantMore::before{
+.pre-before{
     content: '';
     top: 0;
     right: 7%;
@@ -115,7 +108,7 @@
     z-index: 1;
 
 }
-.wantMore::after{
+.pre-after{
     content: '';
     top: 0;
     left: 7%;
@@ -132,20 +125,25 @@
 
 }
 @media (max-width:1100px) {
-    .wantMore::before, .wantMore::after{
+    .pre-before, .pre-after{
         top: -10%;
     }
 }
 @media (max-width:750px) {
-    .wantMore::before{
+    .pre-before{
         right: -35%;
     }
-    .wantMore::after{
+    .pre-after{
         left: -35%;
     }
 }
 @media (any-hover: hover) {
     .wantMore-text_block button:hover{
         filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.342));
+    }
+    .wantMore-text_block a:hover {
+        span{
+            transform: translateX(10px);
+        }
     }
 }

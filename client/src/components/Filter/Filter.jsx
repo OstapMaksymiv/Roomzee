@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import './filter.scss'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 const Filter = () => {
-  const navigate = useNavigate();
   const [searchParams,setSearchParams] = useSearchParams();
   const [query, setQuery] = useState({
     address: searchParams.get('address') || '',
@@ -75,24 +74,9 @@ const Filter = () => {
             <fieldset>
               <legend>Number of Rooms</legend>
               <div className='amount-block'>
-              <input name='minRooms' value={query.minRooms} defaultValue={query.minRooms} onChange={handleChange} type="number" placeholder='Min'/>
-                {/* <select defaultValue={query.minRooms} value={query.minRooms} name='minRooms' onChange={handleChange}>
-                    <option value="" hidden selected>Min</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select> */}
-                <input name='maxRooms' value={query.maxRooms} defaultValue={query.maxRooms} onChange={handleChange} type="number" placeholder='Max'/>
-                {/* <select defaultValue={query.maxRooms} value={query.maxRooms} name='maxRooms' onChange={handleChange}>
-                    <option value="" hidden selected>Max</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select> */}
+              <input name='minRooms' value={query.minRooms} min={0} defaultValue={query.minRooms} onChange={handleChange} type="number" placeholder='Min'/>
+                <input name='maxRooms' value={query.maxRooms} min={0} defaultValue={query.maxRooms} onChange={handleChange} type="number" placeholder='Max'/>
+  
               </div>
             </fieldset>
             <fieldset className="rent-block">
@@ -109,15 +93,15 @@ const Filter = () => {
         <fieldset>
           <legend>Price</legend>
           <div className='price-block'>
-            <input name='minPrice' value={query.minPrice} defaultValue={query.minPrice} onChange={handleChange} type="number" placeholder='Min'/>
-            <input name='maxPrice' value={query.maxPrice} defaultValue={query.maxPrice} onChange={handleChange} type="number" placeholder='Max' />
+            <input name='minPrice' min={0} value={query.minPrice} defaultValue={query.minPrice} onChange={handleChange} type="number" placeholder='Min'/>
+            <input name='maxPrice' min={0} value={query.maxPrice} defaultValue={query.maxPrice} onChange={handleChange} type="number" placeholder='Max' />
           </div>
         </fieldset>
         <fieldset>
           <legend>Size (m²)</legend>
           <div className='size-block'>
-            <input name='minSize' value={query.minSize} defaultValue={query.minSize} onChange={handleChange} type="number" placeholder='Min'/>
-            <input name='maxSize' value={query.maxSize} defaultValue={query.maxSize} onChange={handleChange} type="number" placeholder='Max' />
+            <input name='minSize' min={0} value={query.minSize} defaultValue={query.minSize} onChange={handleChange} type="number" placeholder='Min'/>
+            <input name='maxSize' min={0} value={query.maxSize} defaultValue={query.maxSize} onChange={handleChange} type="number" placeholder='Max' />
           </div>
         </fieldset>
       </div>

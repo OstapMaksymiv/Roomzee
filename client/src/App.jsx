@@ -1,10 +1,8 @@
 import React, {useState, useRef, useEffect, createRef} from 'react'
-import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/homePage/HomePage'
-import Footer from './components/Footer/Footer';
-import { BrowserRouter, createBrowserRouter, RouterProvider, useLocation, HashRouter, Link } from "react-router-dom";
+import {  createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Swiper, SwiperSlide} from 'swiper/react';
-import { Autoplay, A11y, Navigation } from 'swiper/modules';
+import {  A11y, Navigation } from 'swiper/modules';
 import { v4 } from 'uuid';
 import RoomsPage from './pages/roomsPage/RoomsPage';
 import {Layout, RequireAuth} from './components/Layout/Layout';
@@ -182,6 +180,10 @@ function App() {
             path: "/faq",
             element: <Faq/>
           },
+          {
+            path: "/reset-password",
+            element: <ResetPassword/>
+          }
         ]
       },
       {
@@ -193,10 +195,7 @@ function App() {
             element: <ProfilePage/>,
             loader: profilePageLoader
           },
-          {
-            path: "/reset-password",
-            element: <ResetPassword/>
-          },
+
           {
             path:'/profile/update-profile',
             element:<ProfileUpdatePage/>
@@ -226,7 +225,6 @@ function App() {
   const handleChange = (e) => {
     setQuery((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const [swiperSize, setSwiperSize] = useState({ width: '100%', height: 'auto' });
   return (
     <>
       <div className={modalWrapper} ref={modalWrapperRef} onClick={(e) => closeInterface(e)}>
@@ -261,9 +259,7 @@ function App() {
                 <a href={`/rooms?address=${query.address}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}>
                   <button>Search your dream house <img  src="/arrow.png" alt="" /></button>
                 </a>
-                {/* <Link to={`/rooms?address=${query.address}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}>
-                  <button>Search your dream house</button>
-                </Link> */}
+
               </div>
  
             </div>

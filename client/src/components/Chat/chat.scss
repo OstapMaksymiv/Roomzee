@@ -1,11 +1,9 @@
 @import '../../responsive.scss';
 .chat {
-    // height: 100%;
     display: flex;
     flex-direction: column;
     z-index: 99;
     max-height: 437px;
-    /* Стилі скролбара */
     ::-webkit-scrollbar {
       width: 12px;
     }
@@ -29,17 +27,17 @@
       font-size:40px;
       @include small{
         font-size:32px;
-    }
+      }
+      @media (max-width:950px) {
+        max-width: 420px;
+      }
     }
     .messages {
-    //   flex: 1;
       display: flex;
       flex-direction: column;
       gap: 20px;
       max-height: 445px;
       overflow-y: scroll;
-      padding:0 10px;
-          /* Стилі скролбара */
     ::-webkit-scrollbar {
       width: 12px;
     }
@@ -75,13 +73,22 @@
         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
         @include small{
           padding: 10px;
-      }
+        }
+        @media (max-width:515px) {
+          max-width: 415px;
+          width: auto;
+        }
+        @media (max-width:420px) {
+
+        }
         img {
+          flex-shrink: 0;
           width: 40px;
           height: 40px;
           border-radius: 50%;
           object-fit: cover;
           object-position: top;
+
         }
   
         span {
@@ -114,13 +121,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // @include large{
-    //   bottom:-86vh;
-    // }
 
     @include small{
       right: -1%;
       margin: 0 20px;
+    }
+    @media (max-width:450px) {
+      width: 310px;
     }
     .top {
       color: white;

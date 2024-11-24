@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './faq.scss';
-
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import { Fade} from "react-awesome-reveal";
 const Faq = () => {
+  gsap.registerPlugin(useGSAP,CSSRulePlugin,ScrollTrigger);
   const [activeIndex, setActiveIndex] = useState(null);
   const faqPanelsRef = useRef([]);
   const faqItems = [
@@ -35,7 +40,6 @@ const Faq = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  // Use useEffect to manage panel height based on activeIndex
   useEffect(() => {
     faqPanelsRef.current.forEach((panel, index) => {
       if (panel) {
@@ -43,27 +47,35 @@ const Faq = () => {
       }
     });
   }, [activeIndex]);
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    timeline
+      .from('.faq h1', { y: 70, duration: 0.5, opacity: 0 })
+      .from('.description', { y: 40, duration: 0.5, opacity: 0 });
+  },[])
   return (
     <section className='faq'>
       <h1>We're here to help</h1>
       <p className='description'>
         Customer service is at the core of our business. If you need any help before or after making a purchase, we're here.
       </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        {faqItems.map((item, index) => (
-          <div onClick={() => toggleActiveClass(index)} key={index} className='faq-block'>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap:'15px' }}>
-              <h2 style={{ flexGrow: 1 }}>{item.question}</h2>
-              <div className={`plusminus ${activeIndex === index ? 'plusminus-active' : ''}`}></div>
+      <div className='faqs' style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <Fade delay={700} triggerOnce={true}>
+          {faqItems.map((item, index) => (
+            <div onClick={() => toggleActiveClass(index)} key={index} className='faq-block'>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap:'15px' }}>
+                <h2 style={{ flexGrow: 1 }}>{item.question}</h2>
+                <div className={`plusminus ${activeIndex === index ? 'plusminus-active' : ''}`}></div>
+              </div>
+              <p 
+                ref={el => faqPanelsRef.current[index] = el} 
+                className={`faq-panel ${activeIndex === index ? 'active' : ''}`}
+              >
+                {item.answer}
+              </p>
             </div>
-            <p 
-              ref={el => faqPanelsRef.current[index] = el} 
-              className={`faq-panel ${activeIndex === index ? 'active' : ''}`}
-            >
-              {item.answer}
-            </p>
-          </div>
-        ))}
+          ))}
+        </Fade>
       </div>
     </section>
   );

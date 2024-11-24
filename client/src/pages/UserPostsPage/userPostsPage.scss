@@ -1,3 +1,4 @@
+@import '../../responsive.scss';
 .userPostsPage{
     margin: 0px 0 21px 0;
     display: flex;
@@ -6,8 +7,52 @@
     align-items: center;
     gap: 25px;
     h1{
-        // font-size: 45px;
-        // line-height: 55px;
+        text-align: center;
+
+        @include medium{
+            font-size: 45px;
+        }
+        @media (max-width:847px) {
+                font-size: 35px;
+        }
+        @media (max-width:515px) {
+            font-size: 21px;
+        }
+    }
+    .userPostsPage-info{
+
+        display:flex;
+        gap:20px;
+        align-items:center;
+        @media (max-width:697px) {
+            gap: 10px;
+            flex-direction: column;
+        }
+    }
+    .no-results{
+        display: flex;
+        justify-content: center;
+        width: 800px;
+        height: 348px;
+        filter: drop-shadow(1px 1px 1px black);
+        @include large{
+            width: auto;
+            height: 500px;
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width:710px) {
+            h1{
+                font-size: 30px;
+            
+            }
+        }
+        @include small{
+            h1{
+                font-size: 28px;
+            }
+        }
+    
     }
     .userPostsPage-info button{
         margin-top: 10px;

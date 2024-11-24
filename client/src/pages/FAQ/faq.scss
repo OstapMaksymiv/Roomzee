@@ -47,14 +47,10 @@
     background-color:  #000000;
     padding: 18px 20px;
     transition: 0.3s ease-in-out;
-    // max-height: 63px; 
-    // overflow: hidden; /* Hide overflow to avoid scrollbar */
     user-select: none;
     cursor: pointer;
     
-    &:hover{
-        box-shadow: none;
-    }
+
     @media (max-width:450px) {
         h2{
             font-size:18px;}
@@ -108,4 +104,9 @@ h2 {
 		transform: translatey(-50%) rotate(90deg);
 	}
 	
+}
+@media (any-hover: hover) {
+    .faq-block:hover{
+        box-shadow: none;
+    }
 }

@@ -32,8 +32,6 @@
     background-size: cover;
     position: absolute;
     top: 0;
-    // left: 50%;
-    // transform: translateX(-50%);
     left: -7%;
     transform: rotate(180deg);
     width: 433px;
@@ -41,7 +39,7 @@
     object-fit: cover;
     object-position: center;
     z-index: -1;
-    filter: invert(90%);
+    filter: invert(90%) drop-shadow(20px 20px 10px gray);
     @media (max-width:1000px) {
         display: none;
     }
@@ -54,27 +52,27 @@
     background-size: cover;
     position: absolute;
     top: 0;
-    // left: 50%;
-    // transform: translateX(-50%);
     right: -7%;
     width: 433px;
     height: 577px;
     object-fit: cover;
     object-position: center;
     z-index: -1;
-    filter: invert(90%);
+    
+    filter: invert(90%) drop-shadow(20px 20px 10px gray);
     @media (max-width:1000px) {
         display: none;
     }
 }
+
 .activities-help{
     display: flex;
     gap: 24px;
     @media (max-width:750px) {
         flex-direction: column;
      }
-    div{
-        
+    .activity-block{
+        z-index: 0;
         width: 250px;
         --border-bottom-width: 1px;
         --border-color:  rgba(255, 255, 255, 0.1);
@@ -140,14 +138,9 @@
                 filter: invert(100%);
             }
             transition: 0.4s ease-in-out;
-            &:hover{
-                --border-color:  rgba(255, 255, 255, 0.2);
-                box-shadow: rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset;
-            }
+
         }
-        &:hover{
-            box-shadow: 1rem 1rem .7rem #0000002e;
-        }
+
     }
 }
 .contact-form{
@@ -175,12 +168,11 @@
         font-size: 14px;
         background:  rgb(23, 23, 23) ;
         color:  rgb(240, 240, 240) ;
-        // box-shadow: rgb(238, 68, 68) 0px 0px 0px 1px inset;
         transition: 1s ease-in-out;
         &::placeholder{
             transition: 0.4s ease-in-out;
         }
-        &:hover::placeholder,
+    
         &:focus::placeholder {
             color: white;
         }
@@ -202,12 +194,12 @@
         color: rgb(240, 240, 240);
     }
     .button-text {
-        transition: 0.5s ease-in-out;
+        transition: 1s ease-in-out;
         opacity: 1;
     }
       
     .button-text-fade {
-    opacity: 0; /* зникає */
+    opacity: 0;
     }
 }
 input:-internal-autofill-selected,
@@ -216,4 +208,17 @@ textarea:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px rgb(23, 23, 23) inset !important;
     box-shadow: 0 0 0px 1000px rgb(23, 23, 23) inset !important;
     -webkit-text-fill-color: rgb(240, 240, 240) !important;
+}
+@media (any-hover: hover) {
+    .activity-block:hover{
+        box-shadow: 1rem 1rem .7rem #0000002e;
+    }
+    .activity-block a:hover{
+        --border-color:  rgba(255, 255, 255, 0.2);
+        box-shadow: rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset;
+
+    }
+    .contact-form input:hover::placeholder, .contact-form textarea:hover::placeholder{
+        color: white;
+    }
 }

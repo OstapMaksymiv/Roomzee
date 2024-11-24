@@ -4,14 +4,48 @@ import Navbar from '../Navbar/Navbar'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import { AuthContext } from '../../context/AuthContaxt'
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 const Layout = () => {
+  gsap.registerPlugin(useGSAP,CSSRulePlugin);
   const paralaxClass = useRef();
+  const beforeParalaxClass = CSSRulePlugin.getRule(".paralaxClass::before"); 
+  const afterParalaxClass = CSSRulePlugin.getRule(".paralaxClass::after"); 
 
+  useGSAP(
+      () => {    
+        if(window.innerWidth > 1440){
+            gsap.from(beforeParalaxClass, {
+              cssRule: {transform: 'translateZ(-7px) scale(0.3) translateY(700px)',opacity:0 },
+              duration: 2,
+            });
+            gsap.from(afterParalaxClass, {
+              cssRule: {transform: 'translateZ(-5px) scale(0.3) translateY(700px)',opacity:0 },
+              duration: 2,
+            });
+        }
+        else{
+            
+            gsap.from(beforeParalaxClass, {
+                cssRule: {left:-20,opacity:0 },
+                duration: 2,
+              });
+              gsap.from(afterParalaxClass, {
+                cssRule: {opacity:0 },
+                duration: 2,
+              });
+        }
+
+        }
+    );
+        
   const login_paralaxClass = useRef();
   const location  = useLocation();
   useEffect(() => {
     if (location.pathname === '/login' || location.pathname === '/reset-password' || location.pathname === '/register') {
       if (login_paralaxClass.current) {
+        document.body.classList.add('my-body-style');
         paralaxClass.current.style = 'height:100vh;'
         login_paralaxClass.current.classList.remove('hide-login_parallax');
         paralaxClass.current.classList.add('hide-parallax');
@@ -151,7 +185,7 @@ const Layout = () => {
       
       <div className='layout'>
           <div className='navbar'>
-          <Navbar/>
+            <Navbar/>
           </div>
           <div className='content'>
               <Outlet/>
@@ -171,6 +205,7 @@ const RequireAuth = () => {
   useEffect(() => {
     if (location.pathname === '/login' || location.pathname === '/reset-password' || location.pathname === '/register') {
       if (login_paralaxClass.current) {
+        document.body.classList.add('my-body-style');
         paralaxClass.current.style = 'height:100vh;'
         login_paralaxClass.current.classList.remove('hide-login_parallax');
         paralaxClass.current.classList.add('hide-parallax');

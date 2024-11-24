@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import prisma from '../lib/prisma.js';
 import jwt from "jsonwebtoken";
 export const getPosts = async (req, res) => {
@@ -24,9 +23,7 @@ export const getPosts = async (req, res) => {
                 },
             },
         });
-        // setTimeout(() => {
-        //     res.status(200).json(posts)
-        // }, 100000)
+
         res.status(200).json(posts)
     } catch (error) {
         res.status(403).json({message:'Failed to get Posts'})
@@ -34,48 +31,58 @@ export const getPosts = async (req, res) => {
     }
 }
 export const getPost = async (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    try {
-        const post = await prisma.post.findUnique({
-            where:{id},
-            include:{
-                postDetail:true,
-                user:{
-                    select:{
-                        username:true,
-                        avatar:true
-                    }
-                }
-            }
-        });
-        let userId;
-        const token = req.cookies?.token;
-        if(!token){
-            userId = null
-        } else{
-            jwt.verify(token, process.env.JWT_SECRET_KEY, async(err, payload) => {
-              if(err){
-                userId = null;
-              }else{
-                userId = payload.id
-              }
-            })
-        }
-        const saved = await prisma.savedPost.findUnique({
-            where:{
-                userId_postId:{
-                    postId:id,
-                    userId
-                }
-            }
-        })
-        res.status(200).json({...post, isSaved: saved ? true : false})
-    } catch (error) {
-        res.status(403).json({message: `GG ${error}`})
-        console.log(error)
+  const id = req.params.id;
+  try {
+    const post = await prisma.post.findUnique({
+      where: { id },
+      include: {
+        postDetail: true,
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
     }
-}
+
+    const token = req.cookies?.token;
+
+    if (token) {
+ 
+      const userId = await new Promise((resolve, reject) => {
+        jwt.verify(token, process.env.JWT_SECRET_KEY, (err, payload) => {
+          if (err) resolve(null); 
+          else resolve(payload.id);
+        });
+      });
+
+      if (userId) {
+        const saved = await prisma.savedPost.findUnique({
+          where: {
+            userId_postId: {
+              postId: id,
+              userId,
+            },
+          },
+        });
+       
+        return res.status(200).json({ ...post, isSaved: !!saved });
+      }
+    }
+
+    
+    return res.status(200).json({ ...post, isSaved: false });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Failed to get post" });
+  }
+};
+
 export const addPost = async (req, res) => {
     const body = req.body;
     const tokenUserId = req.userId;

@@ -9,7 +9,6 @@
         margin-bottom: 10px;
         display: flex;
         align-items: center;
-        // justify-content: space-between;
         width: 1010px;
         h1{
             font-size: 40px;
@@ -64,11 +63,9 @@
         .nav-rooms{
   
             justify-content: space-between;
-            // gap: 70px;
                 h1{
                     text-align: center;
                     font-size: 36px;
-                    // display: none;
                 }
                 img{
     
@@ -89,7 +86,6 @@
             max-width: 1010px;
             gap: 30px;
             width: 725px;
-            // justify-content: flex-start;
         }
         .nav-rooms h1{
             font-size: 24px;
@@ -107,9 +103,6 @@
         .nav-rooms{
             max-width: 300px;
             gap: 30px;
-    
-            // justify-content: flex-start;
-
         }
         .nav-rooms h1{
             font-size: 20px;
@@ -149,15 +142,6 @@
    display: flex;
    align-items: center;
    justify-content: center;
-    // height: 450px;
-    // width: 500px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: flex-end;
-    // @include large {
-        
-    // }
-
 }
 .loader {
     width: 48px;
@@ -195,7 +179,6 @@
 .roomsPage::before{
     content: '';
     background-image: url('/clock.png');
-    // filter: invert(100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -249,23 +232,15 @@
     height: 100%;
     z-index: 999;
     transition: 0.5s ease-in-out;
-    // background-color: rgb(172, 45, 45);
-    // @include large{
-    // display: block;
-    // }
 }
 .pre_modal-active{
     left: 0%; 
 }
 .modal-filter{
     padding-top: 40px;
-    // top: 50%;
-    // transform: translateY(-50%);
-    // left: 0%;
     top: 0%;
     left: 0;
     position:sticky;
-    // display: none;
     div{
         background-color: rgb(13,13,13);
         border-radius:0 10px 10px 0;
@@ -290,10 +265,6 @@
         filter: invert(100%);
         font-weight: 900;
         transition: 0.4s ease-in-out;
-        &:hover{
-            filter: invert(0%);
-        }
-
     }
     .pagination-active{
         filter: invert(0%);
@@ -302,7 +273,6 @@
         transition: 0.4s ease-in-out;
         font-size: 18px;
         font-weight: 800;
-        // font-family: "Shadows Into Light", cursive;
 
         display: flex;
         align-items: center;
@@ -314,8 +284,11 @@
         img{
             width: 20px;
         }
-        &:hover{
-           
-        }
+
+    }
+}
+@media (any-hover: hover) {
+    .pagination-page:hover{
+        filter: invert(0%);
     }
 }

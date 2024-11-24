@@ -1,16 +1,24 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import { Link, useLocation } from "react-router-dom";
 import { Squash as Hamburger } from 'hamburger-react'
 import './navbar.scss'
 import { AuthContext } from '../../context/AuthContaxt';
 import { useNotificationStore } from '../../library/notificationStore';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 const Navbar = () => {
+    const navbar = useRef()
     const {currentUser} = useContext(AuthContext);
     const [isOpen , setIsOpen] = useState(false)
+    console.log(isOpen);
     const [burgerSize , setBurgerSize] = useState(false)
     const fetch = useNotificationStore((state) => state.fetch);
     const number = useNotificationStore((state) => state.number);
     const location = useLocation();
+
+    gsap.registerPlugin(useGSAP,CSSRulePlugin);
+
     if(currentUser) fetch();
     useEffect(() => {
         const handleResize = () => {
@@ -23,15 +31,18 @@ const Navbar = () => {
             if (window.innerWidth > 620) {
                 setIsOpen(false);
             }
+
         };
+        console.log(isOpen);
         window.addEventListener('resize', handleResize)
         handleResize();
         return () => {
             window.removeEventListener('resize', handleResize);
         }
+        console.log(isOpen);
     }, [window.innerWidth])
   return (
-    <nav style={isOpen ? {backgroundColor: 'transparent'} : {backgroundColor: 'rgba(13, 13, 13)'}}>
+    <nav style={isOpen ? {backgroundColor: 'transparent'} : {backgroundColor: 'rgba(13, 13, 13)'}} ref={navbar} >
         <div className='leftSide'>
             <Link className="leftLink" to='/'>
                 <img src="/logo.jpg" alt="" />
@@ -45,23 +56,23 @@ const Navbar = () => {
             {   currentUser ? 
                 <>
                 <Link className='login profile' to='/profile'>
-                    {/* <span>Profile</span> */}
+                
                 <div className='user'>
                     <img src={!currentUser.avatar ? '/noavatar.jpg' : currentUser.avatar} alt="" />
                     <span>{currentUser.username}</span>
                 </div>
-                    {/* <img src="/user_2.png" alt="" /> */}
+               
                      {number > 0 && <div className="notification">{number}</div>}
                 </Link>
                 </> : 
                 <>
-                <Link to="/login" className='login' style={location.pathname === '/login' ? {borderColor:"rgba(255, 255, 255, 0.2)",boxShadow:'rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset'} : null}>
+                <a href="/login" className='login' style={location.pathname === '/login' ? {borderColor:"rgba(255, 255, 255, 0.2)",boxShadow:'rgba(240, 240, 240, 0.856) 0px 0px 0px 1.25px inset, rgba(240, 240, 240, 0.063) 0px 2.28853px 2.28853px -2.5px inset, rgba(240, 240, 240, 0.024) 0px 10px 10px -3.75px inset'} : null}>
                     <span>Sign in</span>
                     <img src="/user_2.png" alt="" />
-                </Link>
-                <Link to="/register" className="signUp" style={location.pathname === '/register' ? {filter:'drop-shadow(0px 0px 12px white)'} : null}>
+                </a>
+                <a href="/register" className="signUp" style={location.pathname === '/register' ? {filter:'drop-shadow(0px 0px 12px white)'} : null}>
                 Sign up
-                </Link>
+                </a>
                 </>
             }
             <div className='menuIcon' onClick={() => setIsOpen((prev) => !prev)}>
@@ -83,11 +94,11 @@ const Navbar = () => {
                     {currentUser ? (
                         <>
                             <li className='firstLi'>Authentication</li>
-                            <li className='profile'>
+                            <li className='profile menu_link'>
                                 <Link className='profile_link'  to='/profile'>
                                     <div className='user'>
                                         <span>Profile</span>
-                                        {/* <img src="/user_2.png" alt="" /> */}
+                                   
                                     </div>
                                     {number > 0 && <div className="notification">{number}</div>}
                                 </Link>
@@ -97,10 +108,10 @@ const Navbar = () => {
                         <>
                             <li className='firstLi'>Authentication</li>
                             <li>
-                                <Link className='menu_link' to="/login">Sign in</Link>
+                                <a className='menu_link' href="/login">Sign in</a>
                             </li>
                             <li>
-                                <Link className='menu_link' to="/register">Sign up</Link>
+                                <a className='menu_link' href="/register">Sign up</a>
                             </li>
                         </>
                     )}

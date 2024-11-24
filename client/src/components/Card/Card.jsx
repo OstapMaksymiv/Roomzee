@@ -1,13 +1,15 @@
 import React from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react';
-import { Autoplay, A11y, Navigation } from 'swiper/modules';
-import { Link } from "react-router-dom";
+import {  A11y, Navigation } from 'swiper/modules';
+
 import { v4 } from 'uuid';
 import 'swiper/css';
 import './card.scss'
+
 const Card = ({post, postId}) => {
+
   return (
-    <a href={`/rooms/${post.id}`} key={post.id} className='card'>
+    <a href={`/rooms/${post.id}`} key={post.id} onClick={(e) => e.stopPropagation()} className='card'>
       <div style={{position:'relative'}}>
           <Swiper
           className='card_swp'
@@ -15,10 +17,7 @@ const Card = ({post, postId}) => {
             direction={'horizontal'}
             slidesPerView={1}
             loop={true}
-            // autoplay={{
-            //   delay: 2500,
-            //   disableOnInteraction: false,
-            // }}
+
             speed={1200}
             navigation={true}
             modules={[A11y, Navigation]}>
@@ -40,7 +39,7 @@ const Card = ({post, postId}) => {
           <span>
             {post.price}$ / month
           </span>
-          <img  src="/heart.png" alt="" />
+
         </div>
         <div className='location-block'>
           <img src="/location.png" alt="" />

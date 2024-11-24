@@ -5,7 +5,13 @@ import { format } from "timeago.js";
 import apiRequest from "../../library/apiRequest";
 import { SocketContext } from "../../context/SocketContext";
 import { useNotificationStore } from "../../library/notificationStore";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import { Fade} from "react-awesome-reveal";
 function Chat({chats}) {
+  gsap.registerPlugin(useGSAP,CSSRulePlugin,ScrollTrigger);
   const {currentUser} = useContext(AuthContext);
   const {socket} = useContext(SocketContext);
   const [chat, setChat] = useState({});
@@ -37,10 +43,10 @@ function Chat({chats}) {
       console.log(err);
     }
   };
-  useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chat]);
 
+  const handleClick = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
   useEffect(() => {
     if (chat && socket) {
       socket.on("getMessage", (data) => {
@@ -71,13 +77,18 @@ function Chat({chats}) {
       console.log(error);
     }
   }
+  useEffect(() => {
 
+  },[])
   return (
     <>
     <div className="chat">
+      <Fade triggerOnce={true}>
         <h1>Messages</h1>
-        {/* chats.length > 0 ? */}
+      </Fade>
+       
         
+    <Fade delay={400} triggerOnce={true}>
 
       <div className="messages">
       { 
@@ -89,7 +100,7 @@ function Chat({chats}) {
                   ? "white"
                   : "#fecd514e",
             }}
-            onClick={() => handleOpenChat(c.id, c.receiver)}
+            onClick={() => {handleOpenChat(c.id, c.receiver); handleClick()}}
             >
               <img src={c.receiver.avatar || "/noavatar.jpg"} alt="" />
               <span>{c.receiver.username}</span>
@@ -98,8 +109,9 @@ function Chat({chats}) {
           ))
         }
       </div>
+    </Fade>
         
-      {/* : <h2 style={{marginTop:'20px'}}>You have zero chats</h2> */}
+      
     </div>
       {(
 

@@ -6,13 +6,13 @@
     border-radius: 10px;
     border:  2px solid rgba(39, 38, 38, 0.979);
     @include large{
-        width:500px;
+        width:532px;
+    }
+    @media (max-width:1220px) {
+            width: 500px;
     }
     @include small{
         width: 300px;
         height: 200px;
     }
-    // @media (max-width:1220px) {
-    //     width:600px;
-    // }
 }

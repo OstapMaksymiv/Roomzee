@@ -1,7 +1,5 @@
 @import '../../responsive.scss';
 .layout{
-    // display: flex;
-    // flex-direction: column;
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 30px;
@@ -25,7 +23,9 @@
     perspective: 15px;
     
 }
+
 .paralaxClass::before{
+    opacity: 1;
     content: '';
     position: absolute;
     top: 10%;
@@ -38,6 +38,7 @@
     height: 300px;
 }
 .paralaxClass::after{
+    opacity: 1;
     content: '';
     position: absolute;
     top: 4%;
@@ -60,7 +61,6 @@
     margin-top: 22px;
     display: flex;
     flex-direction: column;
-    // align-items: center;
 }
 hr{
     width: 100%;
@@ -70,18 +70,10 @@ hr{
 }
 @media (max-width:1800px){
     .paralaxClass::before{
-        // width: 300px;
-        // height: 250px;
-        // background-size: contain;
-        // background-repeat: no-repeat;
         left: -10%;
     }
     .paralaxClass::after{
         right: -9%;
-        // width:300px;
-        // // height: 250px;
-        // background-size: contain;
-        // background-repeat: no-repeat;
     }
 }
 @include large{
@@ -90,8 +82,9 @@ hr{
         height: 250px;
         background-size: contain;
         background-repeat: no-repeat;
-        // top: 10%;
+
         left: 25%;
+    
         transform: translateX(-25%) translateY(-65%) translateZ(-5px) scale(1.2);
 
     }
@@ -102,9 +95,8 @@ hr{
         background-repeat: no-repeat;
         right: 18%;
         transform: translateX(-18%) translateY(-20%) translateZ(-5px) scale(1.2);
-
         z-index: -1;
-        // top: 10%;
+
  
     }
 }

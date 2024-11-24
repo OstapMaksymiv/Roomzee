@@ -3,7 +3,6 @@
     display: flex;
     gap: 35px;
     padding: 30px 0;
-    // justify-content: center;
     @media (max-width:1220px) {
         flex-direction: column;
         align-items: center;
@@ -20,25 +19,15 @@
         display: block;
     }
 }
-// .singlePage::before{
-//     content: '';
-//     background-image: url('/chair.png');
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     width:403px ;
-//     height: 620px;
-//     position: absolute;
-//     bottom: -20%;
-//     right:25%;
-//     z-index: -1;
-//     filter:blur(5px) invert(100%) ;
-// }
+
 .buttons{
     display: flex;
     gap: 10px;
-    // flex-direction: column;
+
     align-items: center;
+    a{
+        width: 100%;
+    }
     button{
         width: 100%;
 
@@ -46,7 +35,7 @@
         color: white;
         display: flex;
         align-items: center;
-        // flex-direction: column;
+
         justify-content: center;
         border-bottom-width: 1px;
         border-color: rgba(255, 255, 255, 0.1);
@@ -58,9 +47,7 @@
         padding: 20px;
         background-color: rgb(13, 13, 13);
         transition: 0.5s all ease-in-out;
-        &:hover{
-            filter: drop-shadow(0 0 2px white);
-        }
+
     }
     img{
         filter: invert(100%);
@@ -70,7 +57,6 @@
 .images{
     display: flex;
     align-items: flex-start;
-    // flex-direction: column;
     gap: 12px;
     padding: 0px;
     @media (max-width:1220px) {
@@ -86,8 +72,9 @@
         border-style: solid;
         border-top-width: 2px;
         border-radius: 12px;
+        object-fit: cover;
         @include large{
-            width: 500px;
+            width: 532px;
             height: 300px;
         }
         @include small{
@@ -96,10 +83,10 @@
         }
     }
     .less-images{
-        // display: grid;
-        // grid-template-columns: repeat(3, minmax(0,100px));
+
         display: flex;
         flex-direction: column;
+        justify-content: center;
         border-bottom-width: 1px;
         border-color:  rgba(255, 255, 255, 0.1);
         border-left-width: 1px;
@@ -116,18 +103,62 @@
         @include small{
             flex-wrap: wrap;
             width: 300px;
-            // display: grid;
-            // grid-template-columns: repeat(2, minmax(0,120px));
+
         }
         img{
             width: 150px;
-            // height: 150px;
             height: 98px;
+            
             object-fit: cover;
             @include small{
-                width: 120px;
+                width: 230px;
+                height: 130px;
             }
         }
+    }
+}
+.owner-top{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media (max-width:1220px) {
+        display: none;
+    }
+
+}
+.error{
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    padding: 3px 7px;
+
+    background-color: rgb(173, 9, 9);
+    border-radius: 12px;
+    top: -5%;
+    transition: 1s ease-in-out  ;
+    opacity: 0;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    @media (max-width:825px) {
+        font-size: 16px;
+    }
+}
+.error-op0{
+    opacity: 1;
+    top: 10%;
+}
+.owner-bottom{
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (max-width:1220px) {
+        display: flex;
+        width: 500px;
+    }
+    @include small{
+        width: 300px;
     }
 }
 .owner-info{
@@ -139,9 +170,10 @@
     border-left-width: 1px;
     border-right-width: 1px;
     border-style: solid;
+    text-align: center;
     border-top-width: 1px;
     border-radius: 12px;
-    // gap: 0px;
+
     padding:20px;
     background-color: rgb(13, 13, 13);
     img{
@@ -221,85 +253,7 @@
         }
     }
 }
-// .details{
-//     display: flex;
-//     flex-direction: column;
-//     gap: 25px;
-//     max-width: 720px;
-// }
-// .slider{
-//     display: flex;
-//     gap: 20px;
-//     .bigImage{
-//         border: 2px solid rgb(13,13,13);
-//         width: 530px;
-//         height: 380px;
-//         border-radius: 10px;
-//         object-fit: cover;
-//         object-position: center;
-//     }
-//     .smallImages {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 20px;
-//         img{
-//             border: 2px solid rgb(13,13,13);
-//             border-radius: 10px;
-//             width: 170px;
-//         }
-//     }
-// }
-// .info{
-//     display: flex;
-//     gap: 20px;
-//     flex-direction: column;
-// }
-// .top{
-//     display: flex;
-//     flex-direction: column;
-//     gap: 20px;
-//     h1{
-//         font-size: 40px;
-//     }
-//     .address{
-//         display: flex;
-//         gap: 10px;
-//         align-items: center;
-//         color: rgb(124, 124, 124);
-//         img{
-//             width: 16px;
-//         }
-//     }
-//     .price{
-//         font-size: 36px;
-//         font-weight: 700;
-//     }
-// }
-// .bottom{
-//     max-width: 700px;
-//     text-align:justify;
-// }
-// .main-block{
-//     .rooms-block{
-        
-//         display: flex;
-//         justify-content: center;
-//         gap: 40px;
-//     }
-//     .filter-map_container{
-//         overflow-y: visible;
-//         display: flex;
-//         flex-direction: column;
-//         gap: 25px;
-//         position: sticky;
-//         top: 60px;
-//         left: 0;
-//     }
-// }
-    // .map-block{
-    //     width: 500px;
-    //     height: 345px;
-    // }
+
 .room-description{
     font-style: oblique;
 }
@@ -310,18 +264,13 @@
     flex-direction: column;
     gap: 10px;
 
-    .title{
-        // font-size: 20px;
-        // color: rgb(13,13,13);
-        // font-weight: 700;
-    }
+
 }
 .listVertical{
     display: flex;
-    // flex-direction: column;
+ 
     gap: 20px;
 
-    // background-color: #d4d4d4;
     border-radius: 10px;
     @include large{
         flex-wrap: wrap;
@@ -364,9 +313,7 @@
     display: flex;
     gap: 10px;
     border-radius: 10px;
-    // @include large{
-    //     flex-wrap: wrap;
-    // }
+
     .size{
         border-bottom-width: 1px;
         border-color:  rgba(255, 255, 255, 0.1);
@@ -387,21 +334,9 @@
         }
     }
 }
-// .buttons{
-//     display: flex;
-//     justify-content: space-between;
-//     button{
-//         font-weight: 700;
-//         padding: 20px;
-//         display: flex;
-//         align-items: center;
-//         gap: 5px;
-//         background-color: white;
-//         border: 1px solid #000000;
-//         border-radius: 5px;
-//         cursor: pointer;
-//         img{
-//             width: 16px;
-//         }
-//     }
-// }
+
+@media (any-hover: hover) {
+    .buttons button:hover{
+        filter: drop-shadow(0 0 2px white);
+    }
+}

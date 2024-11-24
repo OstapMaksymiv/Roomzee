@@ -6,7 +6,6 @@ nav{
     padding: 16px 32px;
     align-items: center;
     transition: all 0.7s ease-in-out;
-    // background-color: rgba(13, 13, 13, 0.85);
     border-bottom-width: 1px;
     border-color:  rgba(255, 255, 255, 0.1);
     border-left-width: 1px;
@@ -103,9 +102,6 @@ nav{
         transition: 0.45s all ease-in-out;
     }
     .link , .login , .signUp{
-        // @include medium{
-        //     flex:none;
-        // }
         @media(max-width:650px){
             flex:none;
             display: none;
@@ -150,19 +146,19 @@ nav{
     right: 19%;
 }
 .menuIcon{
-    @media(max-width:650px){
-        display:inline;
-    }
     display: none;
     position: relative;
     z-index: 5;
+    @media(max-width:650px){
+        display:inline;
+    }
 }
 .menu{
     position: fixed;
     padding-top: 80px;
     left: 50%;
     transform: translateX(-50%);
-    top: -100%;
+    top: -310%;
     z-index: 4;
     width: 92.1%;
     border-radius: 0 0 20px 20px;
@@ -178,9 +174,6 @@ nav{
     .menu_link, .profile_link{
         color: rgb(153, 153, 153);
         transition: all 0.3s ease-in-out;
-        // border-radius: 7px;
-        // padding: 7px 14px;
-
     }
     ul {
         list-style: none;
@@ -274,7 +267,6 @@ nav{
     }
     .menu_link:hover{
         color:rgb(240, 240, 240);
-        // background-color: #f0f0f065;
         filter: drop-shadow(0 0 15px white);
     }
   }

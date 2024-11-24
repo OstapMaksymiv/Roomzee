@@ -1,6 +1,6 @@
 @import '../../responsive.scss';
 .card{
-    // box-shadow: 0.5rem 0.7rem .7rem #0000002e;
+ 
     border-radius: 10px ;
     overflow: hidden;
     transition: 0.4s ease-in-out;
@@ -15,9 +15,7 @@
         font-size: 19px;
         box-shadow: none;
     }
-    &:hover{
-        box-shadow: 0.7rem 0.7rem .7rem #0000002e;
-    }
+
     @media (max-width:847px) {
         max-width: 300px;
     }
@@ -51,11 +49,9 @@
           background-color: rgb(230, 230, 230);
           border-radius: 50%;
           transition: 0.4s ease-in-out;
+          position: relative;
           z-index: 2;
-          &:hover{
-            filter: invert(100%);
-            // background-color: rgb(236, 129, 188);
-          }
+
         }
     }
     .location-block{
@@ -90,31 +86,17 @@
     right: -10%;
     transform: rotate(180deg);
     background-image: url('/silver2.png');
-    
     width: 150px;
     height: 300px;
     background-size: cover;
     background-position: center;
-    // object-fit: cover;
     background-repeat: no-repeat;
     z-index:0;
 
 }
-// .card-mainInfo::after{
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     width: 100%;
-//     background: rgb(255,255,255);
-//     height: 10px;
-//     background: linear-gradient(0deg, rgba(255, 255, 255, 0.295) 0%, rgba(0,0,0,1) 100%);
-//     z-index: -2;
-// }
 .card_swp{
     width: 312px;
-    // position: relative;
+   
     height: 180px;
     @include large{
         width:320px;
@@ -185,4 +167,12 @@
     left: 0;
     background: linear-gradient(to top, black, rgba(13, 13, 13, 0.8) 50%, rgba(13, 13, 13, 0.4) 80%, rgba(13, 13, 13, 0));
     z-index: 99;
+}
+@media (any-hover: hover) {
+    .card:hover{
+        box-shadow: 0.7rem 0.7rem .7rem #0000002e;
+    }
+    .price-block img:hover{
+        filter: invert(100%);
+    }
 }

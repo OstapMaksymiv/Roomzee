@@ -53,6 +53,35 @@ export const updateUser = async (req, res) => {
         res.status(500).json({message:'Failed to update user!'})
     }
 }
+
+export const resetPassword = async (req, res) => {
+  const { email,newPassword } = req.body;
+  try {
+   
+      const user = await prisma.user.findUnique({
+          where: { email },
+      });
+
+      if (!user) {
+          return res.status(404).json({ message: 'User with this email does not exist!' });
+      }
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      await prisma.user.update({
+          where: { email },
+          data: { password: hashedPassword },
+      });
+
+ 
+          
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Failed to reset password!' });
+  }
+};
+
+
+
 export const deleteUser = async (req, res) => {
     const id = req.params.id;
     const tokenId = req.userId;

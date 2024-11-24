@@ -18,23 +18,10 @@
     align-items: center;
     text-align: center;
     max-width: 730px;
-    // .boxes{
-    //     display: flex;
-    //     gap: 45px;
-    //     align-items: center;
-    //     .box{
-    //         h3{
-    //             font-size: 36px;
-    //             font-weight: 900;
-    //         }
-    //         h4{
-    //             font-size: 20px;
-    //             font-weight: 500;
-    //             color: rgb(153, 153, 153);
 
-    //         }
-    //     }
-    // }
+    h1{
+        position: relative;
+    }
     @media(max-width:810px){
         h1{
             font-size: 36px;
@@ -60,7 +47,7 @@
     width: 650px;
 }
 .splide__slide{
-    // width: 200px;
+ 
     background-color: rgb(92, 107, 107);
 }
 .swiper-container-free-mode > .swiper-wrapper{
@@ -153,13 +140,7 @@
     transform: scale(0);
     transform-origin: center;
 
-    // img{
-    //     height: 800px ;
-    //     width: 500px ;
-    //     object-fit:cover;
-    //     object-position: center;
-    //     transition: all 0.3s ease;
-    // }
+
 
 }
 .modal-menu-closing {
@@ -197,13 +178,10 @@
             transform: rotate(180deg);
             height: 20px;
         }
-        &:hover img{
-           transform: rotate(180deg) translateX(-10px);
-        }
+
     }
     .searchForm{
         padding: 12px 20px;
-        // width: 480px;
         width: auto ;
         height: 56px !important;
         border-radius: 12px;
@@ -236,3 +214,8 @@
     }
 }
 
+@media (any-hover: hover) {
+    .adv_modalBLock:hover img{
+        transform: rotate(180deg) translateX(-10px);
+    }
+}

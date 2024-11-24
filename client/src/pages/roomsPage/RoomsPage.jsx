@@ -3,8 +3,12 @@ import './roomsPage.scss';
 import Filter from '../../components/Filter/Filter';
 import Card from '../../components/Card/Card';
 import { Await, useLoaderData } from 'react-router-dom';
-
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 const RoomsPage = () => {
+  gsap.registerPlugin(useGSAP,CSSRulePlugin,ScrollTrigger);
   const [modal, setModal] = useState('pre_modal');
   const [filterImg, setFilterImg] = useState('');
   const [currentItems, setCurrentItems] = useState([])
@@ -14,14 +18,14 @@ const RoomsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 9;
   const posts = useLoaderData();
-  console.log(posts.postResponse);
+  const beforeRoomsPage = CSSRulePlugin.getRule(".roomsPage::before"); 
+  const afterRoomsPage = CSSRulePlugin.getRule(".roomsPage::after"); 
+
   const paginationItems = currentItems.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
-  // Calculate the total number of pages
   const totalPages = Math.ceil(currentItems.length / rowsPerPage);
-  // Handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -62,7 +66,26 @@ const RoomsPage = () => {
       setFilterImg('');
     }
   };
-
+  useGSAP(() => {
+    gsap.from('.filter',{
+      y:100,
+      opacity:0,
+      duration:1
+    })
+    gsap.from('.nav-rooms h1',{
+      x:100,
+      opacity:0,
+      duration:0.7
+    })
+    gsap.from(beforeRoomsPage, {
+      cssRule: {transform: 'rotate(180deg) scale(1.1)',opacity:0 },
+      duration: 1.5,
+    });
+    gsap.from(afterRoomsPage, {
+      cssRule: {transform: 'rotate(75deg) scale(1.1)',opacity:0 },
+      duration: 1.5,
+    });
+  })
   return (
     <>
       <div className={modal} ref={premodel}>
@@ -89,14 +112,10 @@ const RoomsPage = () => {
             <div className="filter_slicky-block">
               <aside className="filter-map_container">
                 <Filter />
-                {/* <div className="map-block"><Map/></div> */}
               </aside>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
-              {/* {paginationItems.map((item, index) => (
-                <Card key={item.id} postId={index} post={item} />
-              ))} */}
               <Suspense fallback={
                 <div className='loader-block'>
                   <span className="loader"></span>
