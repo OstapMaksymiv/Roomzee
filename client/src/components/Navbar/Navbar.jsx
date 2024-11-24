@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
         <div className='rightSide'>
             <Link className="link" style={location.pathname === '/' ? {filter:'drop-shadow(0px 0px 12px white)', backgroundColor:'#f0f0f065'} : null} to="/">Home</Link>
-            <a className="link" style={location.pathname === '/rooms' ? {filter:'drop-shadow(0px 0px 12px white)', backgroundColor:'#f0f0f065'} : null} href="/rooms">Rooms</a>
+            <Link className="link" style={location.pathname === '/rooms' ? {filter:'drop-shadow(0px 0px 12px white)', backgroundColor:'#f0f0f065'} : null} to="/rooms">Rooms</Link>
             <Link className="link" style={location.pathname === '/contact-us' ? {filter:'drop-shadow(0px 0px 12px white)', backgroundColor:'#f0f0f065'} : null} to="/contact-us">Contacts</Link>
             {   currentUser ? 
                 <>
