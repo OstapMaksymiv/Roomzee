@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io = new Server({
   cors: {
-    origin: "https://roomzee.vercel.app",
+    origin: "http://localhost:5174",
   },
 });
 
