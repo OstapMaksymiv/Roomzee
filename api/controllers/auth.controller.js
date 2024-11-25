@@ -46,6 +46,8 @@ export const login = async (req, res) => {
         .cookie("token", token, {
           httpOnly: true,
           maxAge:age,
+          secure: true, // Работает только через HTTPS
+          sameSite: 'None' // Поддерживает кросс-доменное использование
         })
         .status(200)
         .json(userInfo);      
