@@ -8,5 +8,5 @@ router.delete('/:id',verifyToken, deleteUser);
 router.get("/notification", verifyToken, getNotificationNumber);
 router.post("/save", verifyToken, savePost);
 router.post('/reset-password', resetPassword);
-router.get("/profilePosts", profilePosts);
+router.get("/profilePosts", verifyToken, profilePosts);
 export default router;
