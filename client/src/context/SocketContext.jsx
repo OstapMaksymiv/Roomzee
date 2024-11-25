@@ -11,7 +11,7 @@ const {currentUser} = useContext(AuthContext)
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    setSocket(io("http://localhost:8000"));
+    setSocket(io("https://roomzee-socket.onrender.com"));
   }, []);
 
   useEffect(() => {
