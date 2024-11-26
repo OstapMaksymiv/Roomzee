@@ -11,7 +11,7 @@ const Navbar = () => {
     const navbar = useRef()
     const {currentUser} = useContext(AuthContext);
     const [isOpen , setIsOpen] = useState(false)
-    console.log(isOpen);
+   
     const [burgerSize , setBurgerSize] = useState(false)
     const fetch = useNotificationStore((state) => state.fetch);
     const number = useNotificationStore((state) => state.number);
@@ -33,13 +33,13 @@ const Navbar = () => {
             }
 
         };
-        console.log(isOpen);
+       
         window.addEventListener('resize', handleResize)
         handleResize();
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-        console.log(isOpen);
+        
     }, [window.innerWidth])
   return (
     <nav style={isOpen ? {backgroundColor: 'transparent'} : {backgroundColor: 'rgba(13, 13, 13)'}} ref={navbar} >

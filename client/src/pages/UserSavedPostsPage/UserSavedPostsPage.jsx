@@ -10,7 +10,6 @@ import { Fade } from "react-awesome-reveal";
 const UserSavedPostsPage = () => {
   gsap.registerPlugin(useGSAP,CSSRulePlugin,ScrollTrigger);
     const data = useLoaderData();
-    console.log(data);
     const [currentItems, setCurrentItems] = useState([])
     const [isFetched, setIsFetched] = useState(false)
     const list = useRef('');

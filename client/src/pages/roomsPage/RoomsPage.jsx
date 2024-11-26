@@ -32,6 +32,7 @@ const RoomsPage = () => {
   const fetchData =  (items) => {
     setCurrentItems(items.data);
   };
+  
   useEffect(() => {
     const updateHeight = () => {
       if (window.innerWidth > 1440) {

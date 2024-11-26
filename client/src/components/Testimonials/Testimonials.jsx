@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -11,6 +11,7 @@ import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import './testimonials.scss'
 const Testimonials = () => {
   gsap.registerPlugin(useGSAP,CSSRulePlugin);
+  const containerRef = useRef(null);
   const timeline = gsap.timeline();
   const [advert, setAdvert] = useState([
     'Harvard',
@@ -19,20 +20,33 @@ const Testimonials = () => {
     'Cambridge',
     'Uber'
   ])
-  timeline
-    .from(".tb-title h2", { y: 100, duration: 0.7,delay:0.7, opacity:0 }) 
-    .from(".tb-title span", { y: 100,opacity:0, duration: 0.7 })
-  gsap.from('.mainReview_info h3',{y: 50,opacity:0,scale:1.3, duration: 0.7,delay:1.1})
-  gsap.from('.swiper-s',{y:50,opacity:0, duration: 0.7,delay:1.1})
-  gsap.from('.review', {
-    y: 100,
-    delay:1.5,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.2,
-  });
+  useEffect(() => {
+    const tl = gsap.timeline();
+    if (containerRef.current.querySelector('.tb-title h2')) {
+      tl.from(".tb-title h2", { y: 100, duration: 0.7, delay: 0.7, opacity: 0 })
+        .from(".tb-title span", { y: 100, opacity: 0, duration: 0.7 });
+    }
+
+    if (containerRef.current.querySelector('.mainReview_info h3')) {
+      gsap.from('.mainReview_info h3', { y: 50, opacity: 0, scale: 1.3, duration: 0.7, delay: 1.1 });
+    }
+
+    if (containerRef.current.querySelector('.swiper-s')) {
+      gsap.from('.swiper-s', { y: 50, opacity: 0, duration: 0.7, delay: 1.1 });
+    }
+
+    if (containerRef.current.querySelector('.review')) {
+      gsap.from('.review', {
+        y: 100,
+        delay: 1.5,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.2,
+      });
+    }
+  }, []); 
   return (
-    <section className='Testimonials_block'>
+    <section className='Testimonials_block' ref={containerRef}>
 
         <div className='tb-title' style={{display:'flex', alignItems:"center", gap:'10px'}}>
             <h2>Reviews</h2> <span>See it all {'↴'}</span>

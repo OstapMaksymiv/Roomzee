@@ -44,9 +44,9 @@ function Chat({chats}) {
     }
   };
 
-  const handleClick = () => {
+ useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }
+  }, [chat]);
   useEffect(() => {
     if (chat && socket) {
       socket.on("getMessage", (data) => {
@@ -100,7 +100,7 @@ function Chat({chats}) {
                   ? "white"
                   : "#fecd514e",
             }}
-            onClick={() => {handleOpenChat(c.id, c.receiver); handleClick()}}
+            onClick={() => {handleOpenChat(c.id, c.receiver)}}
             >
               <img src={c.receiver.avatar || "/noavatar.jpg"} alt="" />
               <span>{c.receiver.username}</span>

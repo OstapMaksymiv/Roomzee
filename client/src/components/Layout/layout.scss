@@ -102,11 +102,13 @@ hr{
 }
 @include medium{
     .paralaxClass::before{
-        display: none;
+        
+    
+        transform: translateX(-105%) translateY(-35%) translateZ(-5px) scale(1.2);
 
     }
     .paralaxClass::after{
-        display: none;
+        transform: translateX(95%) translateY(-20%) translateZ(-5px) scale(1.2);
 
     }
 }
