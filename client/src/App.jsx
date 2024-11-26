@@ -257,7 +257,7 @@ function App() {
                   />
                 </div>
                 <a href={`/rooms?address=${query.address}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}>
-                  <button>Search your dream house <img  src="/arrow.png" alt="" /></button>
+                  <button>Search your dream house <img className='search-arrow' src="/arrow.png" alt="" /></button>
                 </a>
 
               </div>
