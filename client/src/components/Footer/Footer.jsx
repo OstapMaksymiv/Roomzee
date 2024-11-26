@@ -74,7 +74,7 @@ const Footer = () => {
             <hr style={{backgroundColor:'rgba(255, 255, 255, 0.1)'}}/>
             </div>
             <div className='footer_S'>
-                <p>Created by <a href="https://ostapmaxportfolio.vercel.app" target='_blank'>Ostap Maksymiv</a></p>
+                <p>Created and all rights reserved by <a href="https://ostapmaxportfolio.vercel.app" target='_blank'>Ostap Maksymiv</a> © 2024</p>
                     <div>
                         <a href="https://github.com" target="_blank">
                             <img src="/github-logo.png" alt="" />
