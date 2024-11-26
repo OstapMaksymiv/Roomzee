@@ -212,6 +212,38 @@ function SinglePage({handleModuleWindowSlider, fullswipperArray}) {
                 <img src={post.user.avatar} alt="" />
                 <p>{post.user.username}</p>
             </div>
+            {currentUser ?  (currentUser.id === post.userId ? (
+                          <div className="buttons">
+                            <button onClick={handleSave} style={saved ? {backgroundColor:'white', filter:'drop-shadow(0 0 2px white)'} : {backgroundColor:'rgb(13,13,13)'}}>
+                              <img style={saved ? {filter:'invert(0)'} : {filter:'invert(100%)'}} src="/save.png" alt="" />
+                            </button>
+                          </div>
+                    ) : (
+                      <div className="buttons">
+                        <button onClick={handleAddChat}>
+                          <img src="/chat.png" alt="" />
+                        </button>
+                        <button onClick={handleSave} style={saved ? {backgroundColor:'white', filter:'drop-shadow(0 0 2px white)'} : {backgroundColor:'rgb(13,13,13)'}}>
+                          <img style={saved ? {filter:'invert(0)'} : {filter:'invert(100%)'}} src="/save.png" alt="" />
+                        </button>
+                      </div>
+                    )) : (
+
+                      <div className="buttons">
+                        
+ 
+                            <button>
+                                <img onClick={() => navigate('/login')} src="/chat.png" alt="" />
+                            </button>
+   
+           
+                            <button onClick={() => navigate('/login')} style={saved ? {backgroundColor:'white', filter:'drop-shadow(0 0 2px white)'} : {backgroundColor:'rgb(13,13,13)'}}>
+                              <img style={saved ? {filter:'invert(0)'} : {filter:'invert(100%)'}} src="/save.png" alt="" />
+                            </button>
+                      
+                      </div>
+                    )
+                    }
           </div>
           <Fade triggerOnce={true}>
             <aside className='sec-map_container'>
