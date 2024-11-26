@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import {Navigate, Link, useNavigate } from "react-router-dom";
 
 import './signIn.scss'
@@ -10,6 +10,7 @@ import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 const SignIn = () => {
   gsap.registerPlugin(useGSAP,CSSRulePlugin,ScrollTrigger);
+  const errorRef = useRef(null);
   const {updateUser, currentUser} = useContext(AuthContext)
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +54,13 @@ const SignIn = () => {
       navigate('/');
     } catch (error) {
       setError(error.response.data.message)
+      errorRef.current.style = 'opacity:1';
+      setTimeout(() => {
+        errorRef.current.style = 'opacity:0'; // Hide error after timeout
+      }, 2000);
+      setTimeout(() => { 
+        setError('');
+      }, 2500);
     } finally{
       setIsLoading(false)
     }
@@ -81,8 +89,8 @@ const SignIn = () => {
                     <img style={{position:'absolute', width:'20px', height:'20px',filter:'invert(70%)',cursor:"pointer", marginRight:'20px', zIndex:"99"}} onClick={() => (eye === '/hide.png' ? setEye('/view.png') : setEye('/hide.png'))} src={eye} alt="" />
                   </div>
                   <button disabled={isLoading}>Sign in</button>
-                  {error && <span className='error'>{error.slice(0,21)}</span>}
-                 
+                  {/* {error && <span ref={errorRef}  className='sign-error'>{error.slice(0,21)}</span>} */}
+                  <span ref={errorRef}  className='sign-error'>{error.slice(0,21)}</span>
                   <Link to='/reset-password'><span>Forget your password? Change it here.</span></Link>
                 </form>
             </div>

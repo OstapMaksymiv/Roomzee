@@ -110,8 +110,12 @@
               
                 color: white;
             }
-            .error{
-                color: rgb(136, 10, 10);
+            .sign-error{
+                font-weight: 900;
+                opacity: 0;
+                transition: 0.4s ease-in-out;
+                // filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.534));
+                color: rgb(173, 20, 20);
                 
             }
         }
