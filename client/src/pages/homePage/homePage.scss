@@ -215,7 +215,7 @@
 }
 
 @media (any-hover: hover) {
-    .adv_modalBLock:hover img{
+    .adv_modalBLock:hover .search-arrow{
         transform: rotate(180deg) translateX(-10px);
     }
 }
