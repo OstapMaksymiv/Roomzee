@@ -127,8 +127,8 @@ function SinglePage({handleModuleWindowSlider, fullswipperArray}) {
                       <div className="buttons">
                         
  
-                            <button>
-                                <img onClick={() => navigate('/login')} src="/chat.png" alt="" />
+                            <button onClick={() => navigate('/login')}>
+                                <img src="/chat.png" alt="" />
                             </button>
    
            
@@ -232,8 +232,8 @@ function SinglePage({handleModuleWindowSlider, fullswipperArray}) {
                       <div className="buttons">
                         
  
-                            <button>
-                                <img onClick={() => navigate('/login')} src="/chat.png" alt="" />
+                            <button onClick={() => navigate('/login')}>
+                                <img  src="/chat.png" alt="" />
                             </button>
    
            
