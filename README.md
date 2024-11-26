@@ -28,22 +28,25 @@ To run RoomZee locally, follow these steps:
    git clone https://github.com/yourusername/roomzee.git
    ```
 
-2. Navigate into the project directory:
+2. Navigate into the `api` directory and start the backend:
 
    ```bash
-   cd roomzee
+   cd api
+   nodemon app.js
    ```
 
-3. Install dependencies:
+3. In a new terminal window, navigate into the `client` directory and run the frontend:
 
    ```bash
-   npm install
+   cd client
+   npm run dev
    ```
 
-4. Run the application:
+4. In another terminal window, navigate into the `socket` directory and start the socket server:
 
    ```bash
-   npm start
+   cd socket
+   nodemon app.js
    ```
 
 5. Open your browser and go to `http://localhost:3000` to view the app.
