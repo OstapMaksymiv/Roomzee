@@ -2,7 +2,7 @@
 # RoomZee
 
 RoomZee is an intuitive platform for booking and managing accommodations. It features a user-friendly interface, real-time availability, personalized recommendations, and an integrated chat for seamless communication between guests and hosts.
-![RoomZee Preview](./client/public/doc-logo.jpg)
+<img src="./assets/roomzee-preview.jpg" alt="RoomZee Preview" width="400" style="border-radius: 10px;" />
 ## Features
 
 - **User-friendly interface**: Simple and easy-to-navigate design for an enhanced user experience.
